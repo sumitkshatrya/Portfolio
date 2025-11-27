@@ -51,28 +51,8 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Download Button at Bottom */}
+      
       <div className="container mx-auto flex flex-col items-center mt-auto">
-        <motion.a
-          href="/resume.pdf"
-          target="_blank"
-          rel="noopener noreferrer"
-          download
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          whileHover={{
-            scale: 1.2,
-            rotateX: 10,
-            rotateY: 10,
-            transition: { type: "spring", stiffness: 200, damping: 12 },
-          }}
-          whileTap={{ scale: 0.95 }}
-          style={{ transformStyle: "preserve-3d" }}
-          className="px-8 py-4 rounded-full bg-sky-400 hover:bg-sky-500 shadow-2xl font-bold text-gray-900 text-2xl"
-        >
-          Download Resume
-        </motion.a>
-
         <p className="text-gray-300 text-lg mt-4">
           &copy; {new Date().getFullYear()} Sumit Kumar. All rights reserved.
         </p>
