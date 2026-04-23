@@ -1,144 +1,222 @@
-import { motion } from "framer-motion";
-import { FiExternalLink, FiGithub } from "react-icons/fi";
+import { motion as Motion } from "framer-motion";
+import {
+  FiArrowUpRight,
+  FiGithub,
+  FiMessageSquare,
+  FiHome,
+  FiShoppingBag,
+  FiBarChart2,
+  FiFileText,
+  FiGrid,
+  FiCpu,
+} from "react-icons/fi";
+
+const projects = [
+  {
+    id: 1,
+    title: "AI Interview Preparation Platform",
+    category: "Featured MERN + AI",
+    description:
+      "Full-stack platform that simulates role-based interviews, records responses, analyzes performance, and gives AI feedback through a clean candidate dashboard.",
+    technologies: ["React.js", "Node.js", "Express", "MongoDB", "JWT", "AI Integration", "Tailwind CSS"],
+    githubUrl: "https://github.com/sumitkshatrya",
+    liveUrl: "https://a-i-interview-client.onrender.com",
+    icon: FiCpu,
+    accent: "from-cyan-400 via-sky-500 to-indigo-500",
+    metrics: ["AI feedback", "JWT auth", "Progress tracking"],
+  },
+  {
+    id: 2,
+    title: "Zentra E-commerce",
+    category: "Full-stack Commerce",
+    description:
+      "E-commerce app with product catalog, cart, wishlist, order flow, secure authentication, and Stripe/Razorpay payment integration.",
+    technologies: ["React.js", "Node.js", "Express", "MongoDB", "Stripe", "Razorpay"],
+    githubUrl: "https://github.com/sumitkshatrya",
+    liveUrl: "https://zentra-frontend.vercel.app",
+    icon: FiShoppingBag,
+    accent: "from-emerald-400 via-teal-500 to-cyan-500",
+    metrics: ["Payments", "Orders", "Wishlist"],
+  },
+  {
+    id: 3,
+    title: "Real-time Chat Application",
+    category: "Messaging Platform",
+    description:
+      "Socket.io chat platform with secure authentication, private conversations, group chat, typing indicators, and online status.",
+    technologies: ["React.js", "Vite", "Node.js", "Express", "MongoDB", "Socket.io"],
+    githubUrl: "https://github.com/sumitkshatrya",
+    liveUrl: "https://chat-app-frontend-omega-sand.vercel.app/",
+    icon: FiMessageSquare,
+    accent: "from-violet-400 via-fuchsia-500 to-rose-500",
+    metrics: ["WebSocket", "Groups", "Presence"],
+  },
+  {
+    id: 4,
+    title: "Real Estate Platform",
+    category: "MERN Property App",
+    description:
+      "Property management system with admin CRUD, advanced search and filtering, testimonials, image upload, and inquiry forms.",
+    technologies: ["React.js", "Node.js", "Express", "MongoDB", "REST APIs"],
+    githubUrl: "https://github.com/sumitkshatrya",
+    liveUrl: "#",
+    icon: FiHome,
+    accent: "from-amber-300 via-orange-400 to-red-500",
+    metrics: ["Admin CRUD", "Search", "Inquiries"],
+  },
+  {
+    id: 5,
+    title: "Project Ranking System",
+    category: "Evaluation Tool",
+    description:
+      "Project evaluation and ranking platform with automated scoring based on multiple technical parameters and a responsive dashboard.",
+    technologies: ["React.js", "Vite", "Tailwind CSS", "Node.js", "Express", "MongoDB"],
+    githubUrl: "https://github.com/sumitkshatrya",
+    liveUrl: "https://ranking-based-frontend.vercel.app/",
+    icon: FiBarChart2,
+    accent: "from-blue-400 via-indigo-500 to-purple-500",
+    metrics: ["Scoring", "Dashboard", "Reports"],
+  },
+  {
+    id: 6,
+    title: "Text Utility App",
+    category: "React Utility",
+    description:
+      "Focused React tool for text transformations, word and character counting, whitespace cleanup, and quick content checks.",
+    technologies: ["React.js", "JavaScript", "CSS"],
+    githubUrl: "https://github.com/sumitkshatrya",
+    liveUrl: "https://textutilityrobo.netlify.app",
+    icon: FiFileText,
+    accent: "from-lime-300 via-green-500 to-emerald-600",
+    metrics: ["Transforms", "Counters", "Cleanup"],
+  },
+  {
+    id: 7,
+    title: "Tic-Tac-Toe Game",
+    category: "Browser Game",
+    description:
+      "Interactive JavaScript game with clear state handling, win detection, reset flow, and a lightweight responsive interface.",
+    technologies: ["JavaScript", "HTML5", "CSS3"],
+    githubUrl: "https://github.com/sumitkshatrya",
+    liveUrl: "https://tic-toc-game-mauve.vercel.app/",
+    icon: FiGrid,
+    accent: "from-pink-400 via-rose-500 to-orange-500",
+    metrics: ["Game logic", "Responsive", "Reset"],
+  },
+];
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 28 },
+  visible: (index) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.55, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] },
+  }),
+};
 
 const Projects = () => {
-  const projects = [
-      {
-      id: 1,
-      title: "Real-time Chat Application",
-      description: "A real-time messaging application with instant messaging capabilities and user authentication.",
-      technologies: ["React.js", "Vite", "TailwindCSS", "Node.js", "Express", "MongoDB", "Socket.io"],
-      githubUrl: "https://github.com/sumitkshatrya",
-      liveUrl: "https://chat-app-frontend-omega-sand.vercel.app/",
-      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfXa2RFDRShkXH03IKgZgsWT069w_AKhsdcQ&s"
-      },
-    {
-      id: 2,
-      title: "Text Utility App",
-      description:
-        "React app for text transformations like uppercase/lowercase conversion, word/character count, and whitespace cleanup.",
-      technologies: ["React.js", "JavaScript", "CSS"],
-      githubUrl: "https://github.com/sumitkshatrya",
-      liveUrl: "textutilityrobo.netlify.app",
-      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLw55msl_eHJ5KgmQaraGx3YdRo4dOsp9BqA&s",
-    },
-    {
-      id: 3,
-      title: "Tic-Tac-Toe Game",
-      description:
-        "Interactive browser-based Tic-Tac-Toe game using core JavaScript, HTML, and CSS.",
-      technologies: ["JavaScript", "HTML5", "CSS3"],
-      githubUrl: "https://github.com/sumitkshatrya",
-      liveUrl: "https://tic-toc-game-mauve.vercel.app/",
-      image: "https://play-lh.googleusercontent.com/zPxLgj5nvl20ahJV7aFC6S5mD8kii5CEEDj25j1P9CYAfXL9sdDuO-8eES0r4DhJHrU",
-    },
-    {
-    id: 4,
-      title: "NewsMonkey App",
-      description:
-        "Built a dynamic news web app using React.js to fetch and display live news articles. Integrated NewsAPI for real-time headlines with infinite scroll.",
-      technologies: ["React.js", "News API", "Bootstrap 5", "CSS"],
-      githubUrl: "https://github.com/sumitkshatrya",
-      liveUrl: "#",
-      image: "https://images.timesnownews.com/thumb/msid-152886181,thumbsize-1225716,width-1280,height-720,resizemode-75/152886181.jpg",
-    },
-     
-    {
-      "id": 5,
-      "title": "Project Ranking System",
-      "description": "A comprehensive project evaluation and ranking platform with automated scoring based on multiple technical parameters.",
-      "technologies": ["React.js", "Vite", "TailwindCSS", "Node.js", "Express", "MongoDB"],
-      "githubUrl": "https://github.com/sumitkshatrya",
-      "liveUrl": "https://ranking-based-frontend.vercel.app/",
-      "image": "https://community.fabric.microsoft.com/t5/image/serverpage/image-id/519441i27A3B7D99516021C/image-size/large?v=v2&px=999"
-    },
-      {
-        "id": 6,
-        "title": "Real Estate Platform",
-        "description": "A mern-stack real estate listing platform with property search, agent profiles, and booking system.",
-        "technologies": ["React.js", "Vite", "TailwindCSS", "Node.js", "Express", "MongoDB"],
-        "githubUrl": "https://github.com/sumitkshatrya",
-        "liveUrl": "#",
-        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfrPSCTEug9KOQf1-S8eALDhfuGM8clPPyQA&s"
-}
-  ];
-
   return (
-    <section id="projects" className="py-20 bg-gray-900 px-4 sm:px-6 lg:px-8">
-      <div className="container mx-auto">
-        <motion.h2
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-4xl md:text-5xl font-bold text-center mb-16 text-white drop-shadow-[2px_2px_8px_rgba(128,0,255,0.6)]"
-        >
-          My Projects
-        </motion.h2>
+    <section id="projects" className="section-shell bg-slate-950">
+      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+        <div className="mx-auto mb-12 max-w-3xl text-center">
+          <Motion.p
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.45 }}
+            className="section-eyebrow"
+          >
+            Selected Work
+          </Motion.p>
+          <Motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.55, delay: 0.08 }}
+            className="section-title"
+          >
+            Projects built for real product behavior
+          </Motion.h2>
+          <Motion.p
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.55, delay: 0.16 }}
+            className="section-copy"
+          >
+            MERN applications with auth, dashboards, APIs, deployment workflows, and responsive interfaces that stay usable beyond the demo.
+          </Motion.p>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 perspective-1000">
-          {projects.map((project, index) => (
-            <motion.div
-              key={project.id}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: index * 0.2 }}
-              whileHover={{
-                scale: 1.05,
-                rotateX: 8,
-                rotateY: -8,
-                boxShadow: "0px 15px 40px rgba(128,0,255,0.4)",
-              }}
-              className="bg-gray-800 rounded-xl overflow-hidden shadow-lg transition-transform duration-300"
-            >
-              {/* Image */}
-              <div className="h-48 overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
-                />
-              </div>
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
+          {projects.map((project, index) => {
+            const Icon = project.icon;
+            const isFeatured = index === 0;
 
-              {/* Content */}
-              <div className="p-6">
-                <h3 className="text-2xl font-bold text-white mb-3">
-                  {project.title}
-                </h3>
-                <p className="text-gray-300 mb-4">{project.description}</p>
-
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {project.technologies.map((tech, i) => (
-                    <span
-                      key={i}
-                      className="px-3 py-1 bg-gray-700 text-gray-300 rounded-full text-sm"
-                    >
-                      {tech}
-                    </span>
-                  ))}
+            return (
+              <Motion.article
+                key={project.id}
+                custom={index}
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.18 }}
+                whileHover={{ y: -8 }}
+                className={`group project-card ${isFeatured ? "md:col-span-2" : ""}`}
+              >
+                <div className={`project-visual bg-gradient-to-br ${project.accent}`}>
+                  <div className="project-browser">
+                    <span />
+                    <span />
+                    <span />
+                  </div>
+                  <div className="relative z-10 flex h-full flex-col justify-between">
+                    <div className="flex items-center justify-between">
+                      <div className="grid h-12 w-12 place-items-center rounded-lg bg-white/18 text-white shadow-lg shadow-black/20 backdrop-blur">
+                        <Icon className="h-6 w-6" />
+                      </div>
+                      <span className="rounded-full border border-white/25 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-white/90">
+                        {project.category}
+                      </span>
+                    </div>
+                    <div className="grid gap-2">
+                      {project.metrics.map((metric) => (
+                        <span key={metric} className="project-metric">
+                          {metric}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
 
-                <div className="flex justify-between items-center">
-                  <a
-                    href={project.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center text-gray-300 hover:text-white transition-colors text-lg"
-                  >
-                    <FiGithub className="mr-2" /> Code
-                  </a>
+                <div className="flex flex-1 flex-col p-6">
+                  <h3 className="text-2xl font-bold text-white">{project.title}</h3>
+                  <p className="mt-3 flex-1 text-sm leading-6 text-slate-300">{project.description}</p>
 
-                  <a
-                    href={project.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center text-gray-300 hover:text-white transition-colors text-lg"
-                  >
-                    <FiExternalLink className="mr-2" /> Live Demo
-                  </a>
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    {project.technologies.map((tech) => (
+                      <span key={tech} className="tech-pill">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="mt-6 flex items-center justify-between gap-4 border-t border-white/10 pt-5">
+                    <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="link-action">
+                      <FiGithub className="h-4 w-4" />
+                      Code
+                    </a>
+                    {project.liveUrl !== "#" && (
+                      <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="link-action">
+                        Live
+                        <FiArrowUpRight className="h-4 w-4" />
+                      </a>
+                    )}
+                  </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+              </Motion.article>
+            );
+          })}
         </div>
       </div>
     </section>

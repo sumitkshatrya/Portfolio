@@ -5,16 +5,17 @@ const CustomCursor = () => {
   const cursorRef = useRef(null);
   const cursorBorderRef = useRef(null);
 
-  // Disable custom cursor on mobile
-  const isMobile =
-    typeof window !== "undefined" &&
-    window.matchMedia("(max-width: 768px)").matches;
-
-  if (isMobile) return null;
-
   useEffect(() => {
+    const isMobile =
+      typeof window !== "undefined" &&
+      window.matchMedia("(max-width: 768px)").matches;
+
+    if (isMobile) return undefined;
+
     const cursor = cursorRef.current;
     const cursorBorder = cursorBorderRef.current;
+
+    if (!cursor || !cursorBorder) return undefined;
 
     // Initial positioning
     gsap.set([cursor, cursorBorder], { xPercent: -50, yPercent: -50 });
@@ -81,13 +82,13 @@ const CustomCursor = () => {
       {/* Main Cursor Dot */}
       <div
         ref={cursorRef}
-        className="fixed top-0 left-0 w-[8px] h-[8px] bg-white rounded-full pointer-events-none z-[999] mix-blend-difference"
+        className="fixed top-0 left-0 z-[999] hidden h-[8px] w-[8px] rounded-full bg-white mix-blend-difference pointer-events-none md:block"
       />
 
       {/* Cursor Border */}
       <div
         ref={cursorBorderRef}
-        className="fixed top-0 left-0 w-[36px] h-[36px] border-2 border-white rounded-full pointer-events-none z-[999] mix-blend-difference opacity-70"
+        className="fixed top-0 left-0 z-[999] hidden h-[36px] w-[36px] rounded-full border-2 border-white opacity-70 mix-blend-difference pointer-events-none md:block"
       />
     </>
   );

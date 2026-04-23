@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { motion, useMotionValue, useTransform } from "framer-motion";
+import { motion as Motion, useMotionValue, useTransform } from "framer-motion";
 
 const Card = ({ icon, name }) => {
   const cardRef = useRef(null);
@@ -22,7 +22,7 @@ const Card = ({ icon, name }) => {
   };
 
   return (
-    <motion.div
+    <Motion.div
       ref={cardRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
@@ -31,7 +31,7 @@ const Card = ({ icon, name }) => {
     >
       <div className="mb-2">{icon}</div>
       <p className="text-white text-sm font-semibold">{name}</p>
-    </motion.div>
+    </Motion.div>
   );
 };
 

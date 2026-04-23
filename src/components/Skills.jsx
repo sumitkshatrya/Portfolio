@@ -1,100 +1,84 @@
-import { useRef } from "react";
-import { motion, useMotionValue, useTransform } from "framer-motion";
-import Card from "./Card";
-import {
-  FaReact, FaCode, FaJava, FaDatabase, FaGithub, FaHtml5, FaCss3Alt, FaBolt
-} from "react-icons/fa";
-import {
-  SiTailwindcss, SiBootstrap, SiMysql, SiMongodb, SiC, SiPostman, SiVercel, SiNetlify, SiRender, SiRailway
-} from "react-icons/si";
+import { motion as Motion } from "framer-motion";
+import { FaBolt, FaCode, FaCss3Alt, FaDatabase, FaGithub, FaHtml5, FaJava, FaReact } from "react-icons/fa";
+import { SiBootstrap, SiC, SiMongodb, SiMysql, SiNetlify, SiPostman, SiRailway, SiRender, SiTailwindcss, SiVercel } from "react-icons/si";
+
+const skills = [
+  { name: "HTML5", icon: FaHtml5, tone: "text-orange-300" },
+  { name: "CSS3", icon: FaCss3Alt, tone: "text-blue-300" },
+  { name: "JavaScript", icon: FaCode, tone: "text-yellow-300" },
+  { name: "React.js", icon: FaReact, tone: "text-cyan-300" },
+  { name: "Tailwind CSS", icon: SiTailwindcss, tone: "text-sky-300" },
+  { name: "Bootstrap 5", icon: SiBootstrap, tone: "text-violet-300" },
+  { name: "Java", icon: FaJava, tone: "text-red-300" },
+  { name: "C Language", icon: SiC, tone: "text-blue-300" },
+];
+
+const tools = [
+  { name: "Git & GitHub", icon: FaGithub, tone: "text-slate-200" },
+  { name: "VS Code", icon: FaCode, tone: "text-blue-300" },
+  { name: "MySQL", icon: SiMysql, tone: "text-sky-300" },
+  { name: "MongoDB", icon: SiMongodb, tone: "text-emerald-300" },
+  { name: "REST APIs", icon: FaDatabase, tone: "text-amber-300" },
+  { name: "Postman", icon: SiPostman, tone: "text-orange-300" },
+  { name: "Thunder Client", icon: FaBolt, tone: "text-indigo-300" },
+  { name: "Vercel", icon: SiVercel, tone: "text-slate-200" },
+  { name: "Netlify", icon: SiNetlify, tone: "text-teal-300" },
+  { name: "Render", icon: SiRender, tone: "text-purple-300" },
+  { name: "Railway", icon: SiRailway, tone: "text-rose-300" },
+];
+
+const SkillGrid = ({ items }) => (
+  <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
+    {items.map((item, index) => {
+      const Icon = item.icon;
+      return (
+        <Motion.div
+          key={item.name}
+          initial={{ opacity: 0, y: 18 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.25 }}
+          transition={{ duration: 0.42, delay: index * 0.04 }}
+          whileHover={{ y: -6 }}
+          className="skill-card"
+        >
+          <Icon className={`h-9 w-9 ${item.tone}`} />
+          <span className="mt-4 text-center text-sm font-bold text-white">{item.name}</span>
+        </Motion.div>
+      );
+    })}
+  </div>
+);
 
 const Skills = () => {
-  const skills = [
-    { name: "HTML5", icon: <FaHtml5 className="text-blue-500 text-5xl" /> },
-    { name: "CSS3", icon: <FaCss3Alt className="text-blue-500 text-5xl" /> },
-    { name: "JavaScript", icon: <FaCode className="text-yellow-500 text-5xl" /> },
-    { name: "React.js", icon: <FaReact className="text-cyan-400 text-5xl" /> },
-    { name: "Tailwind CSS", icon: <SiTailwindcss className="text-sky-400 text-5xl" /> },
-    { name: "Bootstrap 5", icon: <SiBootstrap className="text-purple-600 text-5xl" /> },
-    { name: "Java (Basic)", icon: <FaJava className="text-red-500 text-5xl" /> },
-    { name: "C Language (Basic)", icon: <SiC className="text-blue-500 text-5xl" /> },
-  ];
-
-  const tools = [
-    { name: "Git & GitHub", icon: <FaGithub className="text-gray-300 text-5xl" /> },
-    { name: "VS Code", icon: <FaCode className="text-blue-500 text-5xl" /> },
-    { name: "MySQL", icon: <SiMysql className="text-blue-600 text-5xl" /> },
-    { name: "MongoDB", icon: <SiMongodb className="text-green-500 text-5xl" /> },
-    { name: "REST API", icon: <FaDatabase className="text-yellow-500 text-5xl" /> },
-    { name: "Postman API", icon: <SiPostman className="text-orange-500 text-5xl" /> },
-    { name: "Thunder Client API", icon: <FaBolt className="text-indigo-500 text-5xl" /> },
-    { name: "Frontend Deploy (Vercel)", icon: <SiVercel className="text-black text-5xl" /> },
-    { name: "Frontend Deploy (Netlify)", icon: <SiNetlify className="text-teal-400 text-5xl" /> },
-    { name: "Backend Deploy (Render)", icon: <SiRender className="text-purple-500 text-5xl" /> },
-    { name: "Backend Deploy (Railway)", icon: <SiRailway className="text-red-500 text-5xl" /> },
-  ];
-
-  const create3DCard = (item) => {
-    const ref = useRef(null);
-    const x = useMotionValue(0);
-    const y = useMotionValue(0);
-
-    const rotateX = useTransform(y, [-50, 50], [15, -15]);
-    const rotateY = useTransform(x, [-50, 50], [-15, 15]);
-
-    const handleMouseMove = (e) => {
-      const rect = ref.current.getBoundingClientRect();
-      const posX = e.clientX - rect.left - rect.width / 2;
-      const posY = e.clientY - rect.top - rect.height / 2;
-      x.set(posX / 10);
-      y.set(posY / 10);
-    };
-
-    const handleMouseLeave = () => {
-      x.set(0);
-      y.set(0);
-    };
-
-    return (
-      <motion.div
-        key={item.name}
-        ref={ref}
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
-        style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
-        whileHover={{ scale: 1.3 }}
-        className="p-8"
-      >
-        <Card {...item} textSize="3xl md:text-4xl" />
-      </motion.div>
-    );
-  };
-
   return (
-    <section className="py-24 bg-gray-900 px-6">
-      <div className="container mx-auto">
-        <motion.h2
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-5xl md:text-6xl font-extrabold text-center mb-16 text-white drop-shadow-[2px_2px_8px_rgba(128,0,255,0.7)]"
-        >
-          Technical Skills
-        </motion.h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-12 mb-16">
-          {skills.map(create3DCard)}
+    <section id="skills" className="section-shell bg-slate-950">
+      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+        <div className="mb-12 max-w-3xl">
+          <Motion.p
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.45 }}
+            className="section-eyebrow"
+          >
+            Technical Stack
+          </Motion.p>
+          <Motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.55, delay: 0.08 }}
+            className="section-title"
+          >
+            Tools I use to ship reliable applications
+          </Motion.h2>
         </div>
-        <motion.h2
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-5xl md:text-6xl font-extrabold text-center mb-16 text-white drop-shadow-[2px_2px_8px_rgba(128,0,255,0.7)]"
-        >
-     Tools & Databases
-        </motion.h2>
-        
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-12">
-          {tools.map(create3DCard)}
+
+        <SkillGrid items={skills} />
+
+        <div className="mt-14 border-t border-white/10 pt-10">
+          <h3 className="mb-6 text-2xl font-black text-white">Tools, databases, and deployment</h3>
+          <SkillGrid items={tools} />
         </div>
       </div>
     </section>

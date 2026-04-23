@@ -2,6 +2,118 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  color: #f8fafc;
+  background: #020617;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  overflow-x: hidden;
+  background: #020617;
+}
+
+::selection {
+  background: rgba(34, 211, 238, 0.32);
+  color: #ffffff;
+}
+
+@layer components {
+  .section-shell {
+    @apply relative py-20 sm:py-24 lg:py-28;
+  }
+
+  .section-eyebrow {
+    @apply text-sm font-black uppercase tracking-[0.18em] text-cyan-300;
+  }
+
+  .section-title {
+    @apply text-4xl font-black leading-tight tracking-normal text-white sm:text-5xl lg:text-6xl;
+  }
+
+  .section-copy {
+    @apply mt-5 text-base leading-7 text-slate-300 sm:text-lg sm:leading-8;
+  }
+
+  .btn-primary {
+    @apply inline-flex min-h-12 items-center gap-2 rounded-lg bg-cyan-300 px-5 py-3 text-sm font-black text-slate-950 shadow-lg shadow-cyan-500/20 transition duration-300 hover:-translate-y-0.5 hover:bg-cyan-200 focus:outline-none focus:ring-2 focus:ring-cyan-200 focus:ring-offset-2 focus:ring-offset-slate-950;
+  }
+
+  .btn-secondary {
+    @apply inline-flex min-h-12 items-center gap-2 rounded-lg border border-white/15 bg-white/[0.04] px-5 py-3 text-sm font-black text-white backdrop-blur transition duration-300 hover:-translate-y-0.5 hover:border-white/30 hover:bg-white/[0.08] focus:outline-none focus:ring-2 focus:ring-white/40 focus:ring-offset-2 focus:ring-offset-slate-950;
+  }
+
+  .icon-button {
+    @apply grid h-11 w-11 place-items-center rounded-lg border border-white/10 bg-white/[0.04] text-slate-300 transition duration-300 hover:-translate-y-0.5 hover:border-cyan-300/50 hover:text-white focus:outline-none focus:ring-2 focus:ring-cyan-200 focus:ring-offset-2 focus:ring-offset-slate-950;
+  }
+
+  .project-card {
+    @apply flex min-h-[520px] flex-col overflow-hidden rounded-2xl border border-white/10 bg-slate-900/70 shadow-xl shadow-black/20 transition-colors duration-300 hover:border-cyan-300/35;
+  }
+
+  .project-visual {
+    @apply relative h-56 overflow-hidden p-5;
+  }
+
+  .project-visual::after {
+    content: "";
+    @apply absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.22),transparent_42%),radial-gradient(circle_at_80%_18%,rgba(255,255,255,0.28),transparent_28%)];
+  }
+
+  .project-browser {
+    @apply absolute left-5 right-5 top-5 z-10 flex h-8 items-center gap-2 rounded-t-lg border border-white/15 bg-slate-950/20 px-3 backdrop-blur;
+  }
+
+  .project-browser span {
+    @apply h-2.5 w-2.5 rounded-full bg-white/70;
+  }
+
+  .project-metric {
+    @apply w-fit rounded-lg border border-white/20 bg-slate-950/20 px-3 py-2 text-sm font-bold text-white shadow-lg shadow-black/10 backdrop-blur;
+  }
+
+  .tech-pill {
+    @apply rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs font-semibold text-slate-300;
+  }
+
+  .link-action {
+    @apply inline-flex items-center gap-2 text-sm font-black text-slate-300 transition hover:text-white;
+  }
+
+  .skill-card {
+    @apply flex min-h-[132px] flex-col items-center justify-center rounded-xl border border-white/10 bg-white/[0.035] p-5 shadow-lg shadow-black/10 transition duration-300 hover:border-cyan-300/35 hover:bg-white/[0.06];
+  }
+
+  .contact-row {
+    @apply flex items-center gap-4 rounded-xl border border-white/10 bg-white/[0.035] p-4 transition hover:border-cyan-300/35 hover:bg-white/[0.06];
+  }
+
+  .form-label {
+    @apply mb-2 block text-sm font-bold text-slate-300;
+  }
+
+  .form-field {
+    @apply w-full rounded-lg border border-white/10 bg-slate-950/70 px-4 py-3 text-base text-white outline-none transition placeholder:text-slate-600 focus:border-cyan-300/70 focus:ring-2 focus:ring-cyan-300/20;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

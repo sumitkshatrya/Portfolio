@@ -1,10 +1,16 @@
-import React, { useRef } from "react";
-import { motion } from "framer-motion";
-import { FiMail, FiPhone, FiMapPin } from "react-icons/fi";
+import { useRef } from "react";
+import { motion as Motion } from "framer-motion";
+import { FiMail, FiMapPin, FiPhone, FiSend } from "react-icons/fi";
 import emailjs from "@emailjs/browser";
 
+const contactItems = [
+  { icon: FiMail, label: "Email", text: "skumar21082001@gmail.com", href: "mailto:skumar21082001@gmail.com" },
+  { icon: FiPhone, label: "Phone", text: "+91 9528865099", href: "tel:+919528865099" },
+  { icon: FiMapPin, label: "Location", text: "Moradabad, Uttar Pradesh", href: null },
+];
+
 const Contact = () => {
-  const form = useRef();
+  const form = useRef(null);
 
   const sendEmail = (e) => {
     e.preventDefault();
@@ -26,135 +32,85 @@ const Contact = () => {
   };
 
   return (
-    <section className="relative py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-black px-4 sm:px-6 lg:px-8 overflow-hidden">
-      {/* 🌌 Floating Orbs */}
-      <motion.div
-        className="absolute top-20 left-10 w-72 h-72 rounded-full bg-purple-600/40 blur-3xl"
-        animate={{ y: [0, 40, 0], scale: [1, 1.1, 1] }}
-        transition={{ repeat: Infinity, duration: 8, ease: "easeInOut" }}
-      />
-      <motion.div
-        className="absolute bottom-10 right-10 w-96 h-96 rounded-full bg-pink-600/30 blur-3xl"
-        animate={{ y: [0, -50, 0], scale: [1, 1.15, 1] }}
-        transition={{ repeat: Infinity, duration: 10, ease: "easeInOut" }}
-      />
-
-      <div className="container relative mx-auto z-10">
-        {/* Heading */}
-        <motion.h2
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-7xl md:text-8xl font-extrabold text-center mb-16 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-500"
+    <section id="contact" className="section-shell bg-slate-950">
+      <div className="mx-auto grid max-w-7xl gap-10 px-5 sm:px-6 lg:grid-cols-[0.85fr_1fr] lg:px-8">
+        <Motion.div
+          initial={{ opacity: 0, x: -24 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.55 }}
         >
-          Get In Touch
-        </motion.h2>
+          <p className="section-eyebrow">Contact</p>
+          <h2 className="section-title mt-4">Let&apos;s build something useful.</h2>
+          <p className="mt-6 text-lg leading-8 text-slate-300">
+            I am open to frontend, MERN stack, full-stack developer roles, and freelance projects where clean implementation matters.
+          </p>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Contact Info */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <h3 className="text-4xl font-bold text-white mb-6">
-              Let’s talk about your project
-            </h3>
-            <p className="text-2xl text-gray-300 mb-8 leading-relaxed">
-              I’m available for freelance work and full-time opportunities. Reach out if you’d like to collaborate on something exciting — big or small.
-            </p>
+          <div className="mt-8 grid gap-4">
+            {contactItems.map((item) => {
+              const Icon = item.icon;
+              const content = (
+                <>
+                  <span className="grid h-11 w-11 place-items-center rounded-lg bg-cyan-400/12 text-cyan-300">
+                    <Icon className="h-5 w-5" />
+                  </span>
+                  <span>
+                    <span className="block text-xs font-bold uppercase tracking-[0.18em] text-slate-500">{item.label}</span>
+                    <span className="mt-1 block text-base font-semibold text-white">{item.text}</span>
+                  </span>
+                </>
+              );
 
-            <div className="space-y-8">
-              {[
-                { icon: <FiMail className="text-purple-400 text-2xl mr-4" />, text: "skumar21082001@gmail.com" },
-                { icon: <FiPhone className="text-purple-400 text-2xl mr-4" />, text: "+91 9528865099" },
-                { icon: <FiMapPin className="text-purple-400 text-2xl mr-4" />, text: "Moradabad, Uttar Pradesh - 244001" },
-              ].map((item, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: i * 0.2 }}
-                  className="flex items-center text-2xl text-gray-200"
-                >
-                  {item.icon}
-                  <span>{item.text}</span>
-                </motion.div>
-              ))}
+              return item.href ? (
+                <a key={item.label} href={item.href} className="contact-row">
+                  {content}
+                </a>
+              ) : (
+                <div key={item.label} className="contact-row">
+                  {content}
+                </div>
+              );
+            })}
+          </div>
+        </Motion.div>
+
+        <Motion.form
+          ref={form}
+          onSubmit={sendEmail}
+          initial={{ opacity: 0, x: 24 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.25 }}
+          transition={{ duration: 0.55 }}
+          className="rounded-2xl border border-white/10 bg-slate-900/70 p-5 shadow-2xl shadow-black/25 backdrop-blur sm:p-8"
+        >
+          <div className="grid gap-5">
+            <div>
+              <label htmlFor="user_name" className="form-label">
+                Name
+              </label>
+              <input type="text" id="user_name" name="user_name" className="form-field" placeholder="Your name" required />
             </div>
-          </motion.div>
 
-          {/* Contact Form */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <motion.form
-              ref={form}
-              onSubmit={sendEmail}
-              initial={{ rotateY: -10, opacity: 0 }}
-              animate={{ rotateY: 0, opacity: 1 }}
-              transition={{ duration: 1 }}
-              className="space-y-8 bg-gray-900/60 backdrop-blur-xl p-10 rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.3)] border border-gray-800"
-            >
-              {/* Name */}
-              <div>
-                <label htmlFor="user_name" className="block text-2xl font-medium text-gray-300 mb-2">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  id="user_name"
-                  name="user_name"
-                  className="w-full px-6 py-4 bg-gray-800/80 border border-gray-700 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 text-2xl text-white"
-                  placeholder="Your name"
-                  required
-                />
-              </div>
+            <div>
+              <label htmlFor="user_email" className="form-label">
+                Email
+              </label>
+              <input type="email" id="user_email" name="user_email" className="form-field" placeholder="you@example.com" required />
+            </div>
 
-              {/* Email */}
-              <div>
-                <label htmlFor="user_email" className="block text-2xl font-medium text-gray-300 mb-2">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="user_email"
-                  name="user_email"
-                  className="w-full px-6 py-4 bg-gray-800/80 border border-gray-700 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 text-2xl text-white"
-                  placeholder="Your email"
-                  required
-                />
-              </div>
+            <div>
+              <label htmlFor="message" className="form-label">
+                Message
+              </label>
+              <textarea id="message" name="message" rows="6" className="form-field resize-none" placeholder="Tell me about your project" required />
+            </div>
 
-              {/* Message */}
-              <div>
-                <label htmlFor="message" className="block text-2xl font-medium text-gray-300 mb-2">
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows="6"
-                  className="w-full px-6 py-4 bg-gray-800/80 border border-gray-700 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 text-2xl text-white"
-                  placeholder="Your message"
-                  required
-                ></textarea>
-              </div>
-
-              {/* Submit */}
-              <motion.button
-                type="submit"
-                whileHover={{ scale: 1.05, boxShadow: "0px 0px 20px rgba(168,85,247,0.7)" }}
-                whileTap={{ scale: 0.95 }}
-                className="w-full py-4 px-8 bg-gradient-to-r from-purple-600 to-pink-600 text-2xl text-white font-bold rounded-lg shadow-lg hover:shadow-purple-500/50 transition-all duration-300"
-              >
-                Send Message
-              </motion.button>
-            </motion.form>
-          </motion.div>
-        </div>
+            <Motion.button type="submit" whileTap={{ scale: 0.98 }} className="btn-primary w-full justify-center">
+              Send Message
+              <FiSend className="h-4 w-4" />
+            </Motion.button>
+          </div>
+        </Motion.form>
       </div>
     </section>
   );
