@@ -10,6 +10,7 @@ import {
   FiDownload,
   FiGithub,
   FiGlobe,
+  FiInstagram,
   FiLayers,
   FiLinkedin,
   FiMail,
@@ -145,6 +146,18 @@ const HeroSection = () => {
               >
                 <FiLinkedin className="h-3.5 w-3.5" />
                 <span>LinkedIn</span>
+                <FiArrowUpRight className="h-3 w-3 opacity-60" />
+              </a>
+              <span className="text-dark-border">/</span>
+              <a
+                href={profileData.socials.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-xs font-medium text-editorial-muted hover:text-pink-400 transition-colors"
+                aria-label="Instagram Profile"
+              >
+                <FiInstagram className="h-3.5 w-3.5" />
+                <span>Instagram</span>
                 <FiArrowUpRight className="h-3 w-3 opacity-60" />
               </a>
               <span className="text-dark-border">/</span>

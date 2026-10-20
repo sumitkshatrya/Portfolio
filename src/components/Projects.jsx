@@ -180,7 +180,7 @@ const Projects = () => {
                       </div>
 
                       {/* Action Links */}
-                      <div className="flex flex-wrap items-center gap-4 pt-2">
+                      <div className="flex flex-wrap items-center gap-3 pt-2">
                         {project.liveUrl && (
                           <a
                             href={project.liveUrl}
@@ -190,6 +190,19 @@ const Projects = () => {
                           >
                             <span>Live Deployment</span>
                             <FiExternalLink className="h-4 w-4" />
+                          </a>
+                        )}
+
+                        {project.adminUrl && (
+                          <a
+                            href={project.adminUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="btn-secondary !border-accent-violet/30 hover:!border-accent-violet/70"
+                          >
+                            <FiShield className="h-4 w-4 text-accent-violetLight" />
+                            <span>Admin Portal</span>
+                            <FiArrowUpRight className="h-3.5 w-3.5 opacity-70" />
                           </a>
                         )}
 
@@ -466,8 +479,8 @@ const Projects = () => {
                   </div>
 
                   {/* Actions */}
-                  <div className="mt-6 flex items-center justify-between border-t border-dark-border/80 pt-4">
-                    <div className="flex items-center gap-3">
+                  <div className="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-dark-border/80 pt-4">
+                    <div className="flex flex-wrap items-center gap-3">
                       {project.liveUrl && (
                         <a
                           href={project.liveUrl}
@@ -477,6 +490,18 @@ const Projects = () => {
                         >
                           <span>Live Demo</span>
                           <FiExternalLink className="h-3.5 w-3.5" />
+                        </a>
+                      )}
+                      {project.adminUrl && (
+                        <a
+                          href={project.adminUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 text-xs font-semibold text-accent-violetLight hover:text-white transition-colors"
+                        >
+                          <FiShield className="h-3.5 w-3.5" />
+                          <span>Admin Portal</span>
+                          <FiArrowUpRight className="h-3 w-3 opacity-60" />
                         </a>
                       )}
                       {project.githubUrl && (

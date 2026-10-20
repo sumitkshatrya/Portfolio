@@ -1,6 +1,6 @@
 import { AnimatePresence, motion as Motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { FiDownload, FiGithub, FiLinkedin, FiMenu, FiX } from "react-icons/fi";
+import { FiDownload, FiGithub, FiInstagram, FiLinkedin, FiMenu, FiX } from "react-icons/fi";
 import { profileData } from "../data/profileData";
 
 const navItems = [
@@ -134,6 +134,15 @@ const Header = () => {
             <FiLinkedin className="h-4 w-4" />
           </a>
           <a
+            href={profileData.socials.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="icon-button hover:border-pink-500/50 hover:text-pink-400"
+            aria-label="Instagram Profile"
+          >
+            <FiInstagram className="h-4 w-4" />
+          </a>
+          <a
             href={profileData.socials.resume}
             download
             className="btn-secondary !min-h-10 !px-4 !py-2 !text-xs font-mono"
@@ -215,6 +224,15 @@ const Header = () => {
                     aria-label="LinkedIn Profile"
                   >
                     <FiLinkedin className="h-4 w-4" />
+                  </a>
+                  <a
+                    href={profileData.socials.instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="icon-button hover:border-pink-500/50 hover:text-pink-400"
+                    aria-label="Instagram Profile"
+                  >
+                    <FiInstagram className="h-4 w-4" />
                   </a>
                 </div>
               </div>

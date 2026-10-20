@@ -7,6 +7,7 @@ import {
   FiCheckCircle,
   FiDownload,
   FiGithub,
+  FiInstagram,
   FiLinkedin,
   FiLoader,
   FiMail,
@@ -173,6 +174,16 @@ const Contact = () => {
                 >
                   <FiLinkedin className="h-3.5 w-3.5 text-accent-blue" />
                   LinkedIn
+                  <FiArrowUpRight className="h-3 w-3 opacity-60" />
+                </a>
+                <a
+                  href={profileData.socials.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-secondary !min-h-10 !px-3.5 !py-1.5 !text-xs font-mono hover:text-pink-400"
+                >
+                  <FiInstagram className="h-3.5 w-3.5 text-pink-400" />
+                  Instagram
                   <FiArrowUpRight className="h-3 w-3 opacity-60" />
                 </a>
                 <a

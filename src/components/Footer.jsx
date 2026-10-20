@@ -1,6 +1,7 @@
 import {
   FiArrowUp,
   FiGithub,
+  FiInstagram,
   FiLinkedin,
   FiMail,
   FiPhone,
@@ -61,6 +62,15 @@ const Footer = () => {
               aria-label="X (Twitter) Profile"
             >
               <FiTwitter className="h-4 w-4" />
+            </a>
+            <a
+              href={profileData.socials.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="icon-button hover:border-pink-500/50 hover:text-pink-400"
+              aria-label="Instagram Profile"
+            >
+              <FiInstagram className="h-4 w-4" />
             </a>
             <a
               href={`mailto:${profileData.contact.email}`}
