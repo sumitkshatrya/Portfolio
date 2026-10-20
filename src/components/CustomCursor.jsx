@@ -1,11 +1,9 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const CustomCursor = () => {
   const cursorDotRef = useRef(null);
   const cursorRingRef = useRef(null);
-
-  useEffect(() => {
-    // Respect reduced motion and touch devices
+  const [isEnabled] = useState(() => {
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
@@ -14,9 +12,11 @@ const CustomCursor = () => {
       navigator.maxTouchPoints > 0 ||
       window.matchMedia("(pointer: coarse)").matches;
 
-    if (prefersReducedMotion || isTouchDevice) {
-      return undefined;
-    }
+    return !prefersReducedMotion && !isTouchDevice;
+  });
+
+  useEffect(() => {
+    if (!isEnabled) return undefined;
 
     const dot = cursorDotRef.current;
     const ring = cursorRingRef.current;
@@ -29,6 +29,8 @@ const CustomCursor = () => {
     let isHovering = false;
     let isMouseDown = false;
     let animationFrameId;
+
+    dot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
 
     const handleMouseMove = (e) => {
       mouseX = e.clientX;
@@ -89,7 +91,9 @@ const CustomCursor = () => {
       document.removeEventListener("mouseover", handleMouseOver);
       cancelAnimationFrame(animationFrameId);
     };
-  }, []);
+  }, [isEnabled]);
+
+  if (!isEnabled) return null;
 
   return (
     <div className="pointer-events-none fixed inset-0 z-[100] hidden md:block overflow-hidden" aria-hidden="true">
@@ -101,7 +105,7 @@ const CustomCursor = () => {
       {/* Editorial outer ring */}
       <div
         ref={cursorRingRef}
-        className="absolute -left-4 -top-4 h-8 w-8 rounded-full border border-accent-violet/60 transition-transform duration-75 ease-out"
+        className="absolute -left-4 -top-4 h-8 w-8 rounded-full border border-accent-violet/60 will-change-transform"
       />
     </div>
   );

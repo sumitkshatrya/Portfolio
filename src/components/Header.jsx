@@ -163,7 +163,7 @@ const Header = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2 }}
-            className="border-b border-dark-border bg-dark-surface/98 px-5 py-6 backdrop-blur-xl lg:hidden shadow-2xl"
+            className="border-b border-dark-border bg-dark-surface/[0.98] px-5 py-6 backdrop-blur-xl lg:hidden shadow-2xl"
           >
             <nav className="flex flex-col gap-1.5" aria-label="Mobile Navigation">
               {navItems.map((item) => {

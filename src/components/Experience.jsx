@@ -159,9 +159,9 @@ const Experience = () => {
                     <p className="mt-1 text-sm font-medium text-editorial-muted">
                       {edu.institution}
                     </p>
-                    {edu.affiliation && (
+                    {(edu.affiliation || edu.location) && (
                       <p className="font-mono text-xs text-editorial-subtle">
-                        {edu.affiliation} · {edu.location}
+                        {[edu.affiliation, edu.location].filter(Boolean).join(" · ")}
                       </p>
                     )}
 

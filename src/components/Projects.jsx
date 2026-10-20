@@ -218,15 +218,21 @@ const Projects = () => {
                             <span className="h-2.5 w-2.5 rounded-full bg-emerald-500/80" />
                           </div>
                           <div className="flex items-center gap-2 rounded border border-dark-border bg-dark-base px-3 py-1 font-mono text-[11px] text-editorial-subtle">
-                            <FiLock className="h-3 w-3 text-emerald-400" />
-                            <span>
-                              {project.liveUrl
-                                ? project.liveUrl.replace("https://", "")
-                                : `${project.id}.production.local`}
-                            </span>
+                            {project.liveUrl ? (
+                              <>
+                                <FiLock className="h-3 w-3 text-emerald-400" />
+                                <span>
+                                  {project.liveUrl
+                                    .replace(/^https?:\/\//, "")
+                                    .replace(/\/$/, "")}
+                                </span>
+                              </>
+                            ) : (
+                              <span>Private build</span>
+                            )}
                           </div>
                           <span className="font-mono text-[10px] text-editorial-subtle">
-                            HTTPS
+                            {project.liveUrl ? "HTTPS" : "Local"}
                           </span>
                         </div>
 

@@ -76,7 +76,7 @@ const Contact = () => {
       console.error("EmailJS submission error:", err);
       setStatus("error");
       setErrorMessage(
-        "Failed to deliver message via EmailJS. Please reach out directly to skumar21082001@gmail.com."
+        `Failed to deliver message via EmailJS. Please reach out directly to ${profileData.contact.email}.`
       );
     }
   };
