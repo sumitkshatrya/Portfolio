@@ -1,46 +1,30 @@
+import About from "./components/About";
+import Contact from "./components/Contact";
 import CustomCursor from "./components/CustomCursor";
+import EngineeringApproach from "./components/EngineeringApproach";
+import Experience from "./components/Experience";
+import Footer from "./components/Footer";
 import Header from "./components/Header";
 import HeroSection from "./components/HeroSection";
-import About from "./components/About";
 import Projects from "./components/Projects";
-import Experience from "./components/Experience";
-import Contact from "./components/Contact";
-import Footer from "./components/Footer";
 import Skills from "./components/Skills";
-
 
 function App() {
   return (
-    <>
+    <div className="min-h-screen bg-dark-base text-editorial-primary selection:bg-accent-violet/30 selection:text-white relative">
       <Header />
-      <main className="overflow-x-hidden">
-        <section id="home">
-          <HeroSection />
-        </section>
-
-        <section id="about">
-          <About />
-        </section>
-
-        <section id="projects">
-          <Projects />
-        </section>
-
-        <section id="experience">
-          <Experience />
-        </section>
-
-        <section id="skills">
-          <Skills />
-        </section>
-
-        <section id="contact">
-          <Contact />
-        </section>
+      <main id="main-content" className="overflow-x-hidden">
+        <HeroSection />
+        <About />
+        <Projects />
+        <Skills />
+        <Experience />
+        <EngineeringApproach />
+        <Contact />
       </main>
       <Footer />
       <CustomCursor />
-    </>
+    </div>
   );
 }
 

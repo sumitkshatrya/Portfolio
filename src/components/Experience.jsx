@@ -1,137 +1,228 @@
 import { motion as Motion } from "framer-motion";
-import { FiArrowUpRight, FiBriefcase, FiCheckCircle } from "react-icons/fi";
-
-const experiences = [
-  {
-    id: 1,
-    role: "MERN Stack Developer",
-    company: "The Entrepreneurship Network",
-    period: "Aug 2025 - Nov 2025",
-    type: "Internship",
-    description:
-      "Developed a Real Estate Platform with property management, admin CRUD, testimonials, REST APIs, authentication, and responsive React interfaces.",
-    technologies: ["React.js", "Node.js", "Express.js", "MongoDB", "REST APIs", "Authentication"],
-  },
-  {
-    id: 2,
-    role: "Frontend Development Intern",
-    company: "PearlThoughts",
-    period: "July 2025 - Aug 2025",
-    type: "Remote",
-    description:
-      "Built reusable React single-page application views, integrated REST APIs, improved UI fidelity, and deployed applications with Git/GitHub workflows.",
-    technologies: ["React.js", "Vite", "Tailwind CSS", "Bootstrap", "Git", "GitHub"],
-    certificate: "/Sumit Pearl Thoughts internship.pdf",
-  },
-];
-
-const certifications = [
-  { name: "JavaScript for Beginners", issuer: "Udemy", file: "/java script for beginner certificate.pdf" },
-  { name: "Java Programming", issuer: "Anudip Foundation" },
-  { name: "Smart Cities Research Paper", issuer: "IJCRT", file: "/IJCRT_Certificate_IJCRT_286965.pdf" },
-];
+import {
+  FiArrowUpRight,
+  FiAward,
+  FiBookOpen,
+  FiBriefcase,
+  FiCalendar,
+  FiCheckCircle,
+  FiDownload,
+  FiFileText,
+  FiMapPin,
+} from "react-icons/fi";
+import {
+  certificationsData,
+  educationData,
+  workExperiences,
+} from "../data/experienceData";
 
 const Experience = () => {
   return (
-    <section id="experience" className="section-shell bg-slate-900">
+    <section id="experience" className="section-shell bg-dark-base relative">
       <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
-        <div className="mb-12 max-w-3xl">
-          <Motion.p
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.4 }}
-            transition={{ duration: 0.45 }}
-            className="section-eyebrow"
-          >
-            Experience
-          </Motion.p>
-          <Motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.4 }}
-            transition={{ duration: 0.55, delay: 0.08 }}
-            className="section-title"
-          >
-            Practical full-stack work and certifications
-          </Motion.h2>
+        {/* Header */}
+        <div className="max-w-3xl">
+          <p className="section-eyebrow">Career Timeline</p>
+          <h2 className="section-title mt-3">
+            Practical experience, education & verified credentials.
+          </h2>
+          <p className="section-copy">
+            Hands-on software development across enterprise and startup teams, supported
+            by rigorous academic foundations in computer applications and mathematics.
+          </p>
         </div>
 
-        <div className="grid gap-8 lg:grid-cols-[1fr_0.72fr]">
-          <div className="relative grid gap-5">
-            {experiences.map((exp, index) => (
-              <Motion.article
-                key={exp.id}
-                initial={{ opacity: 0, y: 22 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.25 }}
-                transition={{ duration: 0.5, delay: index * 0.08 }}
-                className="rounded-2xl border border-white/10 bg-slate-950/70 p-6 shadow-xl shadow-black/20"
-              >
-                <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-                  <div className="flex gap-4">
-                    <div className="grid h-12 w-12 flex-none place-items-center rounded-lg bg-cyan-400/12 text-cyan-300">
-                      <FiBriefcase className="h-6 w-6" />
+        {/* Timeline Grid: Work Experience (Left/Wide) + Education & Certifications (Right) */}
+        <div className="mt-14 grid gap-12 lg:grid-cols-12 lg:gap-10">
+          {/* Work Experience Column */}
+          <div className="lg:col-span-7 space-y-8">
+            <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-accent-violetLight">
+              <FiBriefcase className="h-4 w-4" />
+              <span>Professional & Internship Experience</span>
+            </div>
+
+            <div className="relative border-l border-dark-border pl-6 sm:pl-8 space-y-10">
+              {workExperiences.map((exp, index) => (
+                <Motion.article
+                  key={exp.id}
+                  initial={{ opacity: 0, x: -16 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ duration: 0.45, delay: index * 0.08 }}
+                  className="relative group"
+                >
+                  {/* Timeline Node Dot */}
+                  <div className="absolute -left-[31px] sm:-left-[39px] top-1.5 h-3.5 w-3.5 rounded-full border-2 border-dark-base bg-accent-violet group-hover:scale-125 transition-transform" />
+
+                  <div className="editorial-card !p-6">
+                    {/* Role & Period */}
+                    <div className="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between">
+                      <div>
+                        <h3 className="text-xl font-bold text-editorial-primary">
+                          {exp.role}
+                        </h3>
+                        <p className="mt-0.5 text-sm font-semibold text-accent-violetLight">
+                          {exp.organization}
+                        </p>
+                      </div>
+
+                      <div className="flex items-center gap-2 font-mono text-xs text-editorial-muted">
+                        <FiCalendar className="h-3.5 w-3.5 text-editorial-subtle" />
+                        <span>{exp.period}</span>
+                      </div>
                     </div>
-                    <div>
-                      <h3 className="text-2xl font-black text-white">{exp.role}</h3>
-                      <p className="mt-1 text-sm font-semibold text-slate-300">{exp.company}</p>
+
+                    {/* Metadata Sub-row */}
+                    <div className="mt-2 flex items-center gap-3 font-mono text-xs text-editorial-subtle">
+                      <span className="flex items-center gap-1">
+                        <FiMapPin className="h-3 w-3" />
+                        {exp.location}
+                      </span>
+                      <span>·</span>
+                      <span className="rounded bg-dark-card border border-dark-border px-2 py-0.5 text-[10px]">
+                        {exp.type}
+                      </span>
                     </div>
+
+                    {/* Summary */}
+                    <p className="mt-4 text-xs leading-relaxed text-editorial-muted sm:text-sm">
+                      {exp.summary}
+                    </p>
+
+                    {/* Key Bullet Points from Resume */}
+                    <ul className="mt-4 space-y-2 text-xs text-editorial-muted sm:text-sm">
+                      {exp.achievements.map((item, i) => (
+                        <li key={i} className="flex items-start gap-2">
+                          <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-accent-violetLight flex-none" />
+                          <span className="leading-snug">{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    {/* Technologies Used */}
+                    <div className="mt-5 flex flex-wrap gap-1.5 border-t border-dark-border/60 pt-4">
+                      {exp.technologies.map((tech) => (
+                        <span key={tech} className="tech-pill text-[11px]">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Verified Certificate Download */}
+                    {exp.certificate && (
+                      <div className="mt-4 pt-2">
+                        <a
+                          href={exp.certificate}
+                          download
+                          className="inline-flex items-center gap-2 text-xs font-mono font-medium text-accent-violetLight hover:text-white transition-colors"
+                        >
+                          <FiDownload className="h-3.5 w-3.5" />
+                          <span>{exp.certificateLabel || "View Certificate"}</span>
+                          <FiArrowUpRight className="h-3 w-3" />
+                        </a>
+                      </div>
+                    )}
                   </div>
-                  <div className="text-left sm:text-right">
-                    <p className="text-sm font-bold text-amber-300">{exp.period}</p>
-                    <p className="mt-1 text-xs uppercase tracking-[0.18em] text-slate-500">{exp.type}</p>
-                  </div>
-                </div>
-
-                <p className="mt-5 text-sm leading-7 text-slate-300">{exp.description}</p>
-
-                <div className="mt-5 flex flex-wrap gap-2">
-                  {exp.technologies.map((tech) => (
-                    <span key={tech} className="tech-pill">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-
-                {exp.certificate && (
-                  <a href={exp.certificate} download className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-cyan-300 transition hover:text-white">
-                    Certificate
-                    <FiArrowUpRight className="h-4 w-4" />
-                  </a>
-                )}
-              </Motion.article>
-            ))}
+                </Motion.article>
+              ))}
+            </div>
           </div>
 
-          <Motion.aside
-            initial={{ opacity: 0, x: 24 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.25 }}
-            transition={{ duration: 0.55 }}
-            className="rounded-2xl border border-white/10 bg-slate-950/70 p-6 shadow-xl shadow-black/20"
-          >
-            <h3 className="text-2xl font-black text-white">Certifications</h3>
-            <div className="mt-6 grid gap-4">
-              {certifications.map((cert) => {
-                const Wrapper = cert.file ? "a" : "div";
+          {/* Education & Certifications Column */}
+          <div className="lg:col-span-5 space-y-10">
+            {/* Education Section */}
+            <div>
+              <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-accent-blue mb-6">
+                <FiBookOpen className="h-4 w-4" />
+                <span>Academic Education</span>
+              </div>
 
-                return (
-                <Wrapper
-                  key={cert.name}
-                  href={cert.file}
-                  download={cert.file ? true : undefined}
-                  className="group flex items-start gap-4 rounded-xl border border-white/10 bg-white/[0.03] p-4 transition hover:border-cyan-300/40 hover:bg-white/[0.06]"
-                >
-                  <FiCheckCircle className="mt-1 h-5 w-5 flex-none text-emerald-300" />
-                  <span>
-                    <span className="block font-bold text-white">{cert.name}</span>
-                    <span className="mt-1 block text-sm text-slate-400">{cert.issuer}</span>
-                  </span>
-                </Wrapper>
-                );
-              })}
+              <div className="space-y-4">
+                {educationData.map((edu, idx) => (
+                  <Motion.div
+                    key={edu.id}
+                    initial={{ opacity: 0, y: 16 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ duration: 0.45, delay: idx * 0.08 }}
+                    className="editorial-card !p-5"
+                  >
+                    <div className="flex items-baseline justify-between gap-2">
+                      <h4 className="text-base font-bold text-editorial-primary">
+                        {edu.degree}
+                      </h4>
+                      <span className="font-mono text-xs text-editorial-subtle flex-none">
+                        {edu.period}
+                      </span>
+                    </div>
+
+                    <p className="mt-1 text-sm font-medium text-editorial-muted">
+                      {edu.institution}
+                    </p>
+                    {edu.affiliation && (
+                      <p className="font-mono text-xs text-editorial-subtle">
+                        {edu.affiliation} · {edu.location}
+                      </p>
+                    )}
+
+                    <p className="mt-3 text-xs leading-relaxed text-editorial-muted">
+                      {edu.focus}
+                    </p>
+
+                    <div className="mt-3 rounded border border-dark-border/60 bg-dark-base/60 p-2.5 font-mono text-[11px] text-accent-violetLight">
+                      {edu.highlight}
+                    </div>
+                  </Motion.div>
+                ))}
+              </div>
             </div>
-          </Motion.aside>
+
+            {/* Certifications & Research */}
+            <div>
+              <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-emerald-400 mb-6">
+                <FiAward className="h-4 w-4" />
+                <span>Certifications & Research</span>
+              </div>
+
+              <div className="space-y-3">
+                {certificationsData.map((cert) => {
+                  const Wrapper = cert.file ? "a" : "div";
+
+                  return (
+                    <Wrapper
+                      key={cert.id}
+                      href={cert.file || undefined}
+                      download={cert.file ? true : undefined}
+                      className={`editorial-card !p-4 flex items-center justify-between group ${
+                        cert.file ? "cursor-pointer hover:border-accent-violet/40" : ""
+                      }`}
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className="grid h-8 w-8 place-items-center rounded-lg border border-dark-border bg-dark-card text-emerald-400">
+                          <FiCheckCircle className="h-4 w-4" />
+                        </div>
+                        <div>
+                          <p className="text-sm font-bold text-editorial-primary group-hover:text-white transition-colors">
+                            {cert.name}
+                          </p>
+                          <p className="text-xs text-editorial-muted">
+                            {cert.issuer}
+                          </p>
+                        </div>
+                      </div>
+
+                      {cert.hasDownload && (
+                        <span className="inline-flex items-center gap-1 font-mono text-xs text-accent-violetLight group-hover:text-white transition-colors">
+                          <FiDownload className="h-3.5 w-3.5" />
+                          <span className="hidden sm:inline">PDF</span>
+                        </span>
+                      )}
+                    </Wrapper>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

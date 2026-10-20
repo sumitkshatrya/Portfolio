@@ -1,96 +1,109 @@
-import gsap from "gsap";
 import { useEffect, useRef } from "react";
 
 const CustomCursor = () => {
-  const cursorRef = useRef(null);
-  const cursorBorderRef = useRef(null);
+  const cursorDotRef = useRef(null);
+  const cursorRingRef = useRef(null);
 
   useEffect(() => {
-    const isMobile =
-      typeof window !== "undefined" &&
-      window.matchMedia("(max-width: 768px)").matches;
+    // Respect reduced motion and touch devices
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    const isTouchDevice =
+      "ontouchstart" in window ||
+      navigator.maxTouchPoints > 0 ||
+      window.matchMedia("(pointer: coarse)").matches;
 
-    if (isMobile) return undefined;
+    if (prefersReducedMotion || isTouchDevice) {
+      return undefined;
+    }
 
-    const cursor = cursorRef.current;
-    const cursorBorder = cursorBorderRef.current;
+    const dot = cursorDotRef.current;
+    const ring = cursorRingRef.current;
+    if (!dot || !ring) return undefined;
 
-    if (!cursor || !cursorBorder) return undefined;
+    let mouseX = -100;
+    let mouseY = -100;
+    let ringX = -100;
+    let ringY = -100;
+    let isHovering = false;
+    let isMouseDown = false;
+    let animationFrameId;
 
-    // Initial positioning
-    gsap.set([cursor, cursorBorder], { xPercent: -50, yPercent: -50 });
-
-    // GSAP motion trackers
-    const xTo = gsap.quickTo(cursor, "x", { duration: 0.2, ease: "power3.out" });
-    const yTo = gsap.quickTo(cursor, "y", { duration: 0.2, ease: "power3.out" });
-    const xToBorder = gsap.quickTo(cursorBorder, "x", { duration: 0.5, ease: "power3.out" });
-    const yToBorder = gsap.quickTo(cursorBorder, "y", { duration: 0.5, ease: "power3.out" });
-
-    // Mouse move
     const handleMouseMove = (e) => {
-      xTo(e.clientX);
-      yTo(e.clientY);
-      xToBorder(e.clientX);
-      yToBorder(e.clientY);
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      dot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
     };
 
-    // Click shrink animation
     const handleMouseDown = () => {
-      gsap.to([cursor, cursorBorder], { scale: 0.6, duration: 0.2 });
+      isMouseDown = true;
     };
 
     const handleMouseUp = () => {
-      gsap.to([cursor, cursorBorder], { scale: 1, duration: 0.2 });
+      isMouseDown = false;
     };
 
-    // Hover grow effect on links/buttons
-    const handleMouseEnter = () => {
-      gsap.to(cursorBorder, { scale: 1.5, duration: 0.3, ease: "power3.out" });
+    const updateRing = () => {
+      // Smooth linear interpolation for the outer ring
+      const ease = 0.18;
+      ringX += (mouseX - ringX) * ease;
+      ringY += (mouseY - ringY) * ease;
+
+      const scale = isMouseDown ? 0.75 : isHovering ? 1.4 : 1;
+      const opacity = isHovering ? "0.9" : "0.5";
+
+      ring.style.transform = `translate3d(${ringX}px, ${ringY}px, 0) scale(${scale})`;
+      ring.style.opacity = opacity;
+
+      animationFrameId = requestAnimationFrame(updateRing);
     };
 
-    const handleMouseLeave = () => {
-      gsap.to(cursorBorder, { scale: 1, duration: 0.3, ease: "power3.out" });
+    // Track interactive elements
+    const handleMouseOver = (e) => {
+      const target = e.target;
+      if (
+        target.closest("a") ||
+        target.closest("button") ||
+        target.closest("input") ||
+        target.closest("textarea") ||
+        target.closest("[data-interactive]")
+      ) {
+        isHovering = true;
+      } else {
+        isHovering = false;
+      }
     };
 
-    // Attach listeners
-    window.addEventListener("mousemove", handleMouseMove);
-    document.addEventListener("mousedown", handleMouseDown);
-    document.addEventListener("mouseup", handleMouseUp);
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    window.addEventListener("mousedown", handleMouseDown, { passive: true });
+    window.addEventListener("mouseup", handleMouseUp, { passive: true });
+    document.addEventListener("mouseover", handleMouseOver, { passive: true });
 
-    // Extra: detect interactive elements
-    const interactiveEls = document.querySelectorAll("a, button, input, textarea");
-    interactiveEls.forEach((el) => {
-      el.addEventListener("mouseenter", handleMouseEnter);
-      el.addEventListener("mouseleave", handleMouseLeave);
-    });
+    animationFrameId = requestAnimationFrame(updateRing);
 
-    // Cleanup
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
-      document.removeEventListener("mousedown", handleMouseDown);
-      document.removeEventListener("mouseup", handleMouseUp);
-
-      interactiveEls.forEach((el) => {
-        el.removeEventListener("mouseenter", handleMouseEnter);
-        el.removeEventListener("mouseleave", handleMouseLeave);
-      });
+      window.removeEventListener("mousedown", handleMouseDown);
+      window.removeEventListener("mouseup", handleMouseUp);
+      document.removeEventListener("mouseover", handleMouseOver);
+      cancelAnimationFrame(animationFrameId);
     };
   }, []);
 
   return (
-    <>
-      {/* Main Cursor Dot */}
+    <div className="pointer-events-none fixed inset-0 z-[100] hidden md:block overflow-hidden" aria-hidden="true">
+      {/* Center pinpoint */}
       <div
-        ref={cursorRef}
-        className="fixed top-0 left-0 z-[999] hidden h-[8px] w-[8px] rounded-full bg-white mix-blend-difference pointer-events-none md:block"
+        ref={cursorDotRef}
+        className="absolute -left-1 -top-1 h-2 w-2 rounded-full bg-accent-violetLight shadow-[0_0_8px_rgba(139,92,246,0.8)] transition-opacity duration-150"
       />
-
-      {/* Cursor Border */}
+      {/* Editorial outer ring */}
       <div
-        ref={cursorBorderRef}
-        className="fixed top-0 left-0 z-[999] hidden h-[36px] w-[36px] rounded-full border-2 border-white opacity-70 mix-blend-difference pointer-events-none md:block"
+        ref={cursorRingRef}
+        className="absolute -left-4 -top-4 h-8 w-8 rounded-full border border-accent-violet/60 transition-transform duration-75 ease-out"
       />
-    </>
+    </div>
   );
 };
 
