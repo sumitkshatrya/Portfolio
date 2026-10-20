@@ -94,11 +94,6 @@ const Footer = () => {
           <p className="font-mono">
             &copy; {new Date().getFullYear()} Sumit Kumar. All rights reserved.
           </p>
-          <div className="flex items-center gap-4 font-mono text-[11px]">
-            <span>Designed in Premium Editorial Dark</span>
-            <span>·</span>
-            <span>React 19 & Tailwind</span>
-          </div>
         </div>
       </div>
     </footer>
