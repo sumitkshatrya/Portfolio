@@ -27,7 +27,7 @@ export const portfolioKnowledge = {
       linkedin: "https://linkedin.com/in/sumit9kumar",
       twitter: "https://x.com/SumitKumar49564",
       instagram: "https://www.instagram.com/sumitkumar_9927/",
-      portfolio: "https://portfolio-chi-woad-64.vercel.app",
+      portfolio: "https://sumit-aiportfolio.vercel.app",
       resume: "/resume.pdf",
     },
     stats: [

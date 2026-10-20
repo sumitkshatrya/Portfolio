@@ -2,7 +2,15 @@
  * Client service to communicate with the AI Portfolio Assistant backend.
  */
 
-const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || "").replace(/\/+$/, "");
+const isLocalhost =
+  typeof window !== "undefined" &&
+  (window.location.hostname === "localhost" ||
+    window.location.hostname === "127.0.0.1");
+
+const API_BASE_URL = (
+  import.meta.env.VITE_API_BASE_URL ||
+  (isLocalhost ? "" : "https://sumit-portfolio-server.vercel.app")
+).replace(/\/+$/, "");
 
 export async function sendChatMessage(message, history = []) {
   if (!message || !message.trim()) {

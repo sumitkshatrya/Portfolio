@@ -17,16 +17,19 @@ const ChatLogSchema = new mongoose.Schema(
 const ChatLog = mongoose.models.ChatLog || mongoose.model("ChatLog", ChatLogSchema);
 
 export async function connectDB() {
-  const uri = process.env.MONGODB_URI;
+  const uri =
+    process.env.MONGODB_URI ||
+    "mongodb+srv://skumar21082001:skumar121252@adventure.81sqcaq.mongodb.net/";
   if (!uri) {
-    console.log("[MongoDB] No MONGODB_URI provided. Running without database persistence.");
     return;
   }
+
+  if (isConnected) return;
 
   try {
     await mongoose.connect(uri, {
       dbName: process.env.MONGODB_DB_NAME || "portfolio",
-      serverSelectionTimeoutMS: 5000,
+      serverSelectionTimeoutMS: 2500,
     });
     isConnected = true;
     console.log("[MongoDB] Connected successfully to cluster.");
