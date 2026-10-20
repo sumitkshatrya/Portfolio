@@ -3,17 +3,10 @@ import { useState } from "react";
 import {
   FiArrowUpRight,
   FiCheckCircle,
-  FiClock,
-  FiCode,
-  FiCpu,
   FiExternalLink,
   FiGithub,
-  FiLayers,
   FiLock,
   FiShield,
-  FiShoppingBag,
-  FiTerminal,
-  FiUsers,
 } from "react-icons/fi";
 import { projectsData } from "../data/projectsData";
 
@@ -24,8 +17,14 @@ const Projects = () => {
     if (filter === "featured") return project.featured;
     if (filter === "ai")
       return (
-        project.technologies.includes("OpenAI API") ||
-        project.technologies.includes("AI Integration")
+        project.technologies.some(
+          (t) =>
+            t.toLowerCase().includes("openai") ||
+            t.toLowerCase().includes("ai") ||
+            t.toLowerCase().includes("gemini")
+        ) ||
+        project.category.toLowerCase().includes("ai") ||
+        project.tagline.toLowerCase().includes("ai")
       );
     return true;
   });

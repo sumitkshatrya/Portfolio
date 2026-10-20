@@ -1,6 +1,5 @@
 import { motion as Motion } from "framer-motion";
 import {
-  FiCheck,
   FiCode,
   FiCpu,
   FiDatabase,

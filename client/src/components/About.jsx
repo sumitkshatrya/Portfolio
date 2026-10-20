@@ -1,9 +1,6 @@
 import { motion as Motion } from "framer-motion";
 import {
-  FiArrowUpRight,
   FiAward,
-  FiBookOpen,
-  FiCheck,
   FiCode,
   FiCpu,
   FiDatabase,

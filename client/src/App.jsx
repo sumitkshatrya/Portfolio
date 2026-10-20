@@ -1,4 +1,5 @@
 import About from "./components/About";
+import AIAssistant from "./components/ai-assistant";
 import Contact from "./components/Contact";
 import CustomCursor from "./components/CustomCursor";
 import EngineeringApproach from "./components/EngineeringApproach";
@@ -23,6 +24,7 @@ function App() {
         <Contact />
       </main>
       <Footer />
+      <AIAssistant />
       <CustomCursor />
     </div>
   );

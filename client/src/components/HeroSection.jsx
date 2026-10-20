@@ -4,7 +4,6 @@ import {
   FiArrowDown,
   FiArrowUpRight,
   FiCheckCircle,
-  FiCode,
   FiCpu,
   FiDatabase,
   FiDownload,

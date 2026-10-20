@@ -7,7 +7,6 @@ import {
   FiCalendar,
   FiCheckCircle,
   FiDownload,
-  FiFileText,
   FiMapPin,
 } from "react-icons/fi";
 import {
