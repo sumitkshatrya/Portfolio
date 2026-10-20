@@ -52,7 +52,7 @@ const Skills = () => {
                 <div>
                   {/* Category Header */}
                   <div className="flex items-center gap-3">
-                    <div className="grid h-9 w-9 place-items-center rounded-lg border border-dark-border bg-dark-card text-accent-violetLight">
+                    <div className="grid h-9 w-9 place-items-center rounded-lg border border-dark-border bg-dark-card text-accent-violetLight flex-shrink-0">
                       <Icon className="h-4 w-4" />
                     </div>
                     <div>

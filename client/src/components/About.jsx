@@ -66,7 +66,7 @@ const About = () => {
               transition={{ duration: 0.5 }}
               className="group relative overflow-hidden rounded-2xl border border-dark-border bg-dark-surface p-2.5 shadow-xl transition-all hover:border-dark-borderHover"
             >
-              <div className="relative aspect-[4/5] w-full overflow-hidden rounded-xl bg-dark-base">
+              <div className="relative aspect-[4/5] w-full max-w-md mx-auto lg:max-w-none overflow-hidden rounded-xl bg-dark-base">
                 <img
                   src={profileImg}
                   alt="Sumit Kumar — Full Stack Developer"
@@ -76,13 +76,13 @@ const About = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-dark-surface via-transparent to-transparent opacity-80" />
 
                 {/* Overlay Metadata Tag */}
-                <div className="absolute bottom-4 left-4 right-4 rounded-lg border border-dark-border bg-dark-surface/90 p-3.5 backdrop-blur-md">
+                <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 rounded-lg border border-dark-border bg-dark-surface/90 p-3 sm:p-3.5 backdrop-blur-md">
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-sm font-bold text-editorial-primary">
                         Sumit Kumar
                       </p>
-                      <p className="font-mono text-xs text-editorial-muted">
+                      <p className="font-mono text-[11px] sm:text-xs text-editorial-muted">
                         Moradabad, UP, India
                       </p>
                     </div>
@@ -94,12 +94,12 @@ const About = () => {
               </div>
 
               {/* Education Snippet under portrait */}
-              <div className="mt-3.5 space-y-2 p-2 font-mono text-xs text-editorial-muted">
-                <div className="flex items-center justify-between">
+              <div className="mt-3.5 space-y-2 p-2 font-mono text-xs text-editorial-muted max-w-md mx-auto lg:max-w-none">
+                <div className="flex items-center justify-between gap-2 flex-wrap sm:flex-nowrap">
                   <span>IIMT College of Engg. (AKTU)</span>
                   <span className="text-editorial-subtle">MCA</span>
                 </div>
-                <div className="flex items-center justify-between border-t border-dark-border/60 pt-2">
+                <div className="flex items-center justify-between gap-2 flex-wrap sm:flex-nowrap border-t border-dark-border/60 pt-2">
                   <span>Hindu College, Moradabad</span>
                   <span className="text-editorial-subtle">B.Sc. Math</span>
                 </div>

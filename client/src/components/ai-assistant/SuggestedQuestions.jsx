@@ -85,15 +85,15 @@ export default function SuggestedQuestions({ onSelectQuestion, disabled }) {
                 onClick={() => onSelectQuestion(item.text)}
                 className="group flex items-center justify-between w-full text-left rounded-lg border border-dark-border bg-dark-surface/80 hover:bg-dark-cardHover px-3 py-2 text-xs text-editorial-primary transition-all duration-150 hover:border-accent-violet/50 focus:outline-none focus:ring-1 focus:ring-accent-violet disabled:opacity-50 disabled:cursor-not-allowed shadow-sm"
               >
-                <div className="flex items-center gap-2.5">
-                  <div className="p-1 rounded bg-dark-card text-accent-violetLight group-hover:text-white transition-colors">
+                <div className="flex items-center gap-2.5 min-w-0">
+                  <div className="p-1 rounded bg-dark-card text-accent-violetLight group-hover:text-white transition-colors flex-shrink-0">
                     <Icon className="h-3.5 w-3.5" />
                   </div>
-                  <span className="text-zinc-200 group-hover:text-white transition-colors font-medium">
+                  <span className="text-zinc-200 group-hover:text-white transition-colors font-medium truncate">
                     {item.text}
                   </span>
                 </div>
-                <LuArrowRight className="h-3 w-3 text-editorial-muted group-hover:text-accent-violetLight group-hover:translate-x-0.5 transition-all opacity-60 group-hover:opacity-100" />
+                <LuArrowRight className="h-3 w-3 text-editorial-muted group-hover:text-accent-violetLight group-hover:translate-x-0.5 transition-all opacity-60 group-hover:opacity-100 flex-shrink-0 ml-1.5" />
               </button>
             );
           })}

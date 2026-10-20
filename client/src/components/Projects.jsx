@@ -100,7 +100,7 @@ const Projects = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.15 }}
                   transition={{ duration: 0.55 }}
-                  className="rounded-2xl border border-dark-border bg-dark-surface p-6 sm:p-8 lg:p-10 shadow-2xl"
+                  className="rounded-2xl border border-dark-border bg-dark-surface p-5 sm:p-8 lg:p-10 shadow-2xl"
                 >
                   <div
                     className={`grid items-center gap-8 lg:grid-cols-12 lg:gap-12 ${
@@ -108,9 +108,9 @@ const Projects = () => {
                     }`}
                   >
                     {/* Project Information */}
-                    <div className="lg:col-span-6 space-y-6">
+                    <div className="lg:col-span-6 space-y-5 sm:space-y-6">
                       {/* Meta Pill Row */}
-                      <div className="flex flex-wrap items-center gap-2.5">
+                      <div className="flex flex-wrap items-center gap-2 sm:gap-2.5">
                         <span className="font-mono text-xs text-accent-violetLight bg-accent-violet/10 border border-accent-violet/30 px-2.5 py-0.5 rounded">
                           {project.year}
                         </span>
@@ -126,10 +126,10 @@ const Projects = () => {
 
                       {/* Title & Value Proposition */}
                       <div>
-                        <h3 className="text-2xl font-black text-editorial-primary sm:text-3xl lg:text-4xl leading-tight">
+                        <h3 className="text-xl font-black text-editorial-primary sm:text-3xl lg:text-4xl leading-tight">
                           {project.title}
                         </h3>
-                        <p className="mt-3 text-sm leading-relaxed text-editorial-muted sm:text-base">
+                        <p className="mt-2.5 sm:mt-3 text-xs leading-relaxed text-editorial-muted sm:text-base">
                           {project.tagline}
                         </p>
                       </div>
@@ -229,11 +229,11 @@ const Projects = () => {
                             <span className="h-2.5 w-2.5 rounded-full bg-amber-500/80" />
                             <span className="h-2.5 w-2.5 rounded-full bg-emerald-500/80" />
                           </div>
-                          <div className="flex items-center gap-2 rounded border border-dark-border bg-dark-base px-3 py-1 font-mono text-[11px] text-editorial-subtle">
+                          <div className="flex items-center gap-1.5 sm:gap-2 rounded border border-dark-border bg-dark-base px-2.5 sm:px-3 py-1 font-mono text-[10px] sm:text-[11px] text-editorial-subtle max-w-[170px] xs:max-w-[220px] sm:max-w-xs">
                             {project.liveUrl ? (
                               <>
-                                <FiLock className="h-3 w-3 text-emerald-400" />
-                                <span>
+                                <FiLock className="h-3 w-3 text-emerald-400 flex-shrink-0" />
+                                <span className="truncate">
                                   {project.liveUrl
                                     .replace(/^https?:\/\//, "")
                                     .replace(/\/$/, "")}
@@ -243,28 +243,28 @@ const Projects = () => {
                               <span>Private build</span>
                             )}
                           </div>
-                          <span className="font-mono text-[10px] text-editorial-subtle">
+                          <span className="font-mono text-[10px] text-editorial-subtle hidden xs:inline">
                             {project.liveUrl ? "HTTPS" : "Local"}
                           </span>
                         </div>
 
                         {/* Interactive UI Mockup Representation */}
-                        <div className="p-5 sm:p-6 bg-gradient-to-b from-dark-surface to-dark-base min-h-[340px] flex flex-col justify-between">
+                        <div className="p-4 sm:p-6 bg-gradient-to-b from-dark-surface to-dark-base min-h-[320px] sm:min-h-[340px] flex flex-col justify-between">
                           {/* Top UI Bar inside mockup */}
-                          <div className="flex items-center justify-between border-b border-dark-border/60 pb-3">
-                            <div className="flex items-center gap-2">
-                              <div className="h-6 w-6 rounded bg-accent-violet/20 border border-accent-violet/40 grid place-items-center font-mono text-xs text-accent-violetLight font-bold">
+                          <div className="flex items-center justify-between border-b border-dark-border/60 pb-3 gap-2">
+                            <div className="flex items-center gap-2 min-w-0">
+                              <div className="h-6 w-6 rounded bg-accent-violet/20 border border-accent-violet/40 grid place-items-center font-mono text-xs text-accent-violetLight font-bold flex-shrink-0">
                                 {project.shortName.slice(0, 2).toUpperCase()}
                               </div>
-                              <span className="text-xs font-bold text-editorial-primary">
+                              <span className="text-xs font-bold text-editorial-primary truncate">
                                 {project.shortName}
                               </span>
                             </div>
-                            <div className="flex gap-2">
+                            <div className="flex flex-wrap gap-1 sm:gap-2 justify-end">
                               {project.metrics.slice(0, 2).map((m) => (
                                 <span
                                   key={m}
-                                  className="rounded bg-dark-card border border-dark-border px-2 py-0.5 font-mono text-[10px] text-editorial-muted"
+                                  className="rounded bg-dark-card border border-dark-border px-1.5 sm:px-2 py-0.5 font-mono text-[9px] sm:text-[10px] text-editorial-muted"
                                 >
                                   {m}
                                 </span>
@@ -276,20 +276,20 @@ const Projects = () => {
                           {project.id === "medicore-ai" && (
                             <div className="my-4 space-y-3">
                               <div className="rounded-lg border border-dark-border bg-dark-card p-3">
-                                <div className="flex items-center justify-between text-xs font-mono text-editorial-muted">
+                                <div className="flex items-center justify-between text-xs font-mono text-editorial-muted flex-wrap gap-1">
                                   <span>Patient Symptom Assessment</span>
                                   <span className="text-emerald-400">OpenAI Triage Active</span>
                                 </div>
                                 <p className="mt-2 text-xs text-editorial-primary bg-dark-base p-2.5 rounded border border-dark-border/60">
                                   &quot;Experiencing persistent migraines and visual aura for 48 hours...&quot;
                                 </p>
-                                <div className="mt-2.5 flex items-center justify-between text-[11px]">
+                                <div className="mt-2.5 flex items-center justify-between text-[11px] flex-wrap gap-1">
                                   <span className="text-accent-violetLight font-medium">Recommended: Neurologist</span>
                                   <span className="text-editorial-subtle">Confidence: 94%</span>
                                 </div>
                               </div>
 
-                              <div className="grid grid-cols-3 gap-2 text-center font-mono text-[11px]">
+                              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-center font-mono text-[10px] sm:text-[11px]">
                                 <div className="rounded border border-dark-border bg-dark-surface p-2">
                                   <span className="text-editorial-subtle block">Doctor Portal</span>
                                   <span className="text-emerald-400 font-bold">Online</span>
@@ -309,20 +309,20 @@ const Projects = () => {
                           {project.id === "ai-interview-agent" && (
                             <div className="my-4 space-y-3">
                               <div className="rounded-lg border border-dark-border bg-dark-card p-3">
-                                <div className="flex items-center justify-between text-xs font-mono">
+                                <div className="flex items-center justify-between text-xs font-mono flex-wrap gap-1">
                                   <span className="text-editorial-muted">Role: Senior Frontend Engineer</span>
                                   <span className="text-amber-400">Timer: 02:45</span>
                                 </div>
                                 <p className="mt-2 text-xs text-editorial-primary bg-dark-base p-2.5 rounded border border-dark-border/60">
                                   &quot;How would you prevent unnecessary React re-renders in a high-frequency WebSocket chart?&quot;
                                 </p>
-                                <div className="mt-2.5 flex items-center justify-between text-[11px] font-mono">
+                                <div className="mt-2.5 flex items-center justify-between text-[11px] font-mono flex-wrap gap-1">
                                   <span className="text-emerald-400">AI Feedback: Clarity 92/100</span>
                                   <span className="text-accent-blue">Technical Depth: Solid</span>
                                 </div>
                               </div>
 
-                              <div className="grid grid-cols-2 gap-2 text-center font-mono text-[11px]">
+                              <div className="grid grid-cols-2 gap-2 text-center font-mono text-[10px] sm:text-[11px]">
                                 <div className="rounded border border-dark-border bg-dark-surface p-2">
                                   <span className="text-editorial-subtle block">Adaptive Prompts</span>
                                   <span className="text-accent-violetLight font-bold">Dynamic Flow</span>
@@ -338,21 +338,21 @@ const Projects = () => {
                           {project.id === "zentra-ecommerce" && (
                             <div className="my-4 space-y-3">
                               <div className="rounded-lg border border-dark-border bg-dark-card p-3">
-                                <div className="flex items-center justify-between text-xs font-mono">
+                                <div className="flex items-center justify-between text-xs font-mono flex-wrap gap-1">
                                   <span className="text-editorial-muted">Transaction Gateway</span>
                                   <span className="text-emerald-400">Webhook Verified</span>
                                 </div>
-                                <div className="mt-2 flex items-center justify-between bg-dark-base p-2.5 rounded border border-dark-border/60 text-xs">
+                                <div className="mt-2 flex items-center justify-between bg-dark-base p-2.5 rounded border border-dark-border/60 text-xs flex-wrap gap-1">
                                   <span className="text-editorial-primary font-medium">Dual Checkout Pipeline</span>
                                   <span className="font-mono text-accent-violetLight">Stripe + Razorpay</span>
                                 </div>
-                                <div className="mt-2 flex items-center justify-between text-[11px] font-mono">
+                                <div className="mt-2 flex items-center justify-between text-[11px] font-mono flex-wrap gap-1">
                                   <span className="text-editorial-subtle">Inventory Sync: Zero Latency</span>
                                   <span className="text-emerald-400">AI Recommendations</span>
                                 </div>
                               </div>
 
-                              <div className="grid grid-cols-3 gap-2 text-center font-mono text-[11px]">
+                              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-center font-mono text-[10px] sm:text-[11px]">
                                 <div className="rounded border border-dark-border bg-dark-surface p-2">
                                   <span className="text-editorial-subtle block">Cart / Wishlist</span>
                                   <span className="text-accent-blue font-bold">Persistent</span>

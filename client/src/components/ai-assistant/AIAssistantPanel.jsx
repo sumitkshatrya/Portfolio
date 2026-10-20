@@ -84,9 +84,9 @@ export default function AIAssistantPanel({
         }}
         exit={{ opacity: 0, scale: 0.94, y: 16 }}
         transition={{ type: "spring", damping: 25, stiffness: 320 }}
-        className={`fixed z-40 flex flex-col overflow-hidden border border-dark-border bg-dark-surface shadow-2xl backdrop-blur-xl outline-none focus:ring-1 focus:ring-accent-violet/30 ${
+        className={`fixed z-50 flex flex-col overflow-hidden border border-dark-border bg-dark-surface shadow-2xl backdrop-blur-xl outline-none focus:ring-1 focus:ring-accent-violet/30 ${
           isMinimized
-            ? "bottom-20 right-4 sm:right-6 w-[340px] rounded-2xl"
+            ? "bottom-18 right-3 sm:bottom-20 sm:right-6 w-[calc(100vw-1.5rem)] sm:w-[340px] max-w-[340px] rounded-2xl"
             : "bottom-0 right-0 sm:bottom-20 sm:right-6 w-full sm:w-[430px] h-[100dvh] sm:h-[620px] max-h-[100dvh] sm:max-h-[82vh] rounded-none sm:rounded-2xl"
         }`}
       >

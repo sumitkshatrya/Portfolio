@@ -103,16 +103,16 @@ const Contact = () => {
             <div className="space-y-3">
               <a
                 href={`mailto:${profileData.contact.email}`}
-                className="editorial-card !p-4 flex items-center gap-3.5 group hover:border-accent-violet/40"
+                className="editorial-card !p-3.5 sm:!p-4 flex items-center gap-3.5 group hover:border-accent-violet/40 min-w-0"
               >
-                <div className="grid h-10 w-10 place-items-center rounded-lg border border-dark-border bg-dark-card text-accent-violetLight group-hover:bg-accent-violet group-hover:text-white transition-colors">
+                <div className="grid h-10 w-10 place-items-center rounded-lg border border-dark-border bg-dark-card text-accent-violetLight group-hover:bg-accent-violet group-hover:text-white transition-colors flex-shrink-0">
                   <FiMail className="h-4 w-4" />
                 </div>
-                <div>
+                <div className="min-w-0">
                   <span className="font-mono text-[10px] uppercase tracking-wider text-editorial-subtle block">
                     Email Address
                   </span>
-                  <span className="text-sm font-semibold text-editorial-primary group-hover:text-accent-violetLight transition-colors">
+                  <span className="text-xs sm:text-sm font-semibold text-editorial-primary group-hover:text-accent-violetLight transition-colors break-all sm:break-normal">
                     {profileData.contact.email}
                   </span>
                 </div>
@@ -120,16 +120,16 @@ const Contact = () => {
 
               <a
                 href={`tel:${profileData.contact.phone.replace(/\s+/g, "")}`}
-                className="editorial-card !p-4 flex items-center gap-3.5 group hover:border-accent-violet/40"
+                className="editorial-card !p-3.5 sm:!p-4 flex items-center gap-3.5 group hover:border-accent-violet/40 min-w-0"
               >
-                <div className="grid h-10 w-10 place-items-center rounded-lg border border-dark-border bg-dark-card text-accent-blue group-hover:bg-accent-blue group-hover:text-white transition-colors">
+                <div className="grid h-10 w-10 place-items-center rounded-lg border border-dark-border bg-dark-card text-accent-blue group-hover:bg-accent-blue group-hover:text-white transition-colors flex-shrink-0">
                   <FiPhone className="h-4 w-4" />
                 </div>
-                <div>
+                <div className="min-w-0">
                   <span className="font-mono text-[10px] uppercase tracking-wider text-editorial-subtle block">
                     Phone / WhatsApp
                   </span>
-                  <span className="text-sm font-semibold text-editorial-primary group-hover:text-accent-blue transition-colors">
+                  <span className="text-xs sm:text-sm font-semibold text-editorial-primary group-hover:text-accent-blue transition-colors">
                     {profileData.contact.phone}
                   </span>
                 </div>
@@ -205,7 +205,7 @@ const Contact = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.5 }}
-              className="editorial-card !p-6 sm:!p-8 shadow-2xl"
+              className="editorial-card !p-4 xs:!p-6 sm:!p-8 shadow-2xl"
             >
               <h3 className="text-xl font-bold text-editorial-primary">
                 Send an Engineering Inquiry

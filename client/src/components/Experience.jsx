@@ -40,7 +40,7 @@ const Experience = () => {
               <span>Professional & Internship Experience</span>
             </div>
 
-            <div className="relative border-l border-dark-border pl-6 sm:pl-8 space-y-10">
+            <div className="relative border-l border-dark-border pl-4 sm:pl-8 space-y-8 sm:space-y-10">
               {workExperiences.map((exp, index) => (
                 <Motion.article
                   key={exp.id}
@@ -51,9 +51,9 @@ const Experience = () => {
                   className="relative group"
                 >
                   {/* Timeline Node Dot */}
-                  <div className="absolute -left-[31px] sm:-left-[39px] top-1.5 h-3.5 w-3.5 rounded-full border-2 border-dark-base bg-accent-violet group-hover:scale-125 transition-transform" />
+                  <div className="absolute -left-[23px] sm:-left-[39px] top-1.5 h-3.5 w-3.5 rounded-full border-2 border-dark-base bg-accent-violet group-hover:scale-125 transition-transform" />
 
-                  <div className="editorial-card !p-6">
+                  <div className="editorial-card !p-4 sm:!p-6">
                     {/* Role & Period */}
                     <div className="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between">
                       <div>
@@ -146,8 +146,8 @@ const Experience = () => {
                     transition={{ duration: 0.45, delay: idx * 0.08 }}
                     className="editorial-card !p-5"
                   >
-                    <div className="flex items-baseline justify-between gap-2">
-                      <h4 className="text-base font-bold text-editorial-primary">
+                    <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 sm:gap-2">
+                      <h4 className="text-sm sm:text-base font-bold text-editorial-primary">
                         {edu.degree}
                       </h4>
                       <span className="font-mono text-xs text-editorial-subtle flex-none">

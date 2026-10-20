@@ -42,7 +42,7 @@ export default function ChatInput({
   const canSend = !isLoading && !disabled && input.trim().length > 0 && !isOverLimit;
 
   return (
-    <div className="border-t border-dark-border bg-dark-surface/95 p-3 backdrop-blur-md">
+    <div className="border-t border-dark-border bg-dark-surface/95 p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] sm:pb-3 backdrop-blur-md">
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -96,9 +96,12 @@ export default function ChatInput({
 
         {/* Input helper & character count */}
         <div className="flex items-center justify-between px-1 text-[10px] font-mono text-editorial-subtle">
-          <span>
+          <span className="hidden sm:inline">
             <kbd className="rounded border border-dark-border bg-dark-card px-1 py-0.5">Enter</kbd> to send,{" "}
             <kbd className="rounded border border-dark-border bg-dark-card px-1 py-0.5">Shift+Enter</kbd> for newline
+          </span>
+          <span className="sm:hidden text-editorial-subtle">
+            Tap send or hit return
           </span>
           <span className={isOverLimit ? "text-red-400 font-semibold" : ""}>
             {input.length}/{maxLength}

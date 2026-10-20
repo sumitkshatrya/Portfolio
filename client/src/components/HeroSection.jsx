@@ -22,11 +22,11 @@ const HeroSection = () => {
   return (
     <section
       id="home"
-      className="relative min-h-[92vh] overflow-hidden pt-28 pb-16 lg:pt-36 lg:pb-24"
+      className="relative min-h-[90vh] overflow-hidden pt-24 pb-12 sm:pt-28 sm:pb-16 lg:pt-36 lg:pb-24"
     >
       {/* Editorial ambient gradients */}
       <div
-        className="pointer-events-none absolute -top-40 left-1/2 h-[500px] w-[900px] -translate-x-1/2 rounded-full bg-gradient-to-b from-accent-violet/15 via-accent-blue/10 to-transparent blur-3xl"
+        className="pointer-events-none absolute -top-40 left-1/2 h-[450px] w-[95vw] sm:w-[900px] max-w-[900px] -translate-x-1/2 rounded-full bg-gradient-to-b from-accent-violet/15 via-accent-blue/10 to-transparent blur-3xl"
         aria-hidden="true"
       />
       <div
@@ -34,8 +34,8 @@ const HeroSection = () => {
         aria-hidden="true"
       />
 
-      <div className="relative mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
-        <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-8 xl:gap-12">
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-8 xl:gap-12">
           {/* Left Column: Editorial Headline & Positioning */}
           <div className="lg:col-span-7">
             {/* Status Pill */}
@@ -69,7 +69,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.16 }}
-              className="mt-4 text-4xl font-extrabold tracking-tight text-editorial-primary sm:text-6xl lg:text-7xl leading-[1.08]"
+              className="mt-4 text-3xl font-extrabold tracking-tight text-editorial-primary sm:text-6xl lg:text-7xl leading-[1.12]"
             >
               Engineering{" "}
               <span className="bg-gradient-to-r from-accent-violetLight via-accent-violet to-accent-blue bg-clip-text text-transparent">
@@ -83,7 +83,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.45, delay: 0.24 }}
-              className="mt-6 max-w-2xl text-base leading-relaxed text-editorial-muted sm:text-lg sm:leading-8"
+              className="mt-5 sm:mt-6 max-w-2xl text-sm leading-relaxed text-editorial-muted sm:text-lg sm:leading-8"
             >
               {profileData.subheadline}
             </Motion.p>
@@ -93,9 +93,9 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.45, delay: 0.32 }}
-              className="mt-8 flex flex-wrap items-center gap-3.5"
+              className="mt-8 flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 sm:gap-3.5"
             >
-              <a href="#projects" className="btn-primary group">
+              <a href="#projects" className="btn-primary group w-full sm:w-auto">
                 Explore My Work
                 <FiArrowDown className="h-4 w-4 transition-transform group-hover:translate-y-0.5" />
               </a>
@@ -103,13 +103,13 @@ const HeroSection = () => {
               <a
                 href={profileData.socials.resume}
                 download
-                className="btn-secondary group font-mono text-xs"
+                className="btn-secondary group font-mono text-xs w-full sm:w-auto"
               >
                 <FiDownload className="h-4 w-4 text-accent-violetLight transition-transform group-hover:-translate-y-0.5" />
                 Download Resume
               </a>
 
-              <a href="#contact" className="btn-ghost">
+              <a href="#contact" className="btn-ghost w-full sm:w-auto justify-center">
                 Let&apos;s Talk
               </a>
             </Motion.div>
@@ -119,7 +119,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.45, delay: 0.4 }}
-              className="mt-10 flex items-center gap-4 text-editorial-muted"
+              className="mt-8 sm:mt-10 flex flex-wrap items-center gap-y-2 gap-x-3 sm:gap-4 text-editorial-muted"
             >
               <span className="font-mono text-xs tracking-wider uppercase text-editorial-subtle">
                 Connect:
@@ -200,7 +200,7 @@ const HeroSection = () => {
                 <button
                   type="button"
                   onClick={() => setActiveTab("stack")}
-                  className={`flex-1 rounded-md py-1.5 text-center font-mono text-xs font-medium transition-all ${
+                  className={`flex-1 rounded-md py-1.5 px-1 sm:px-2 text-center font-mono text-[11px] sm:text-xs font-medium transition-all ${
                     activeTab === "stack"
                       ? "bg-dark-card text-editorial-primary shadow-sm"
                       : "text-editorial-muted hover:text-editorial-primary"
@@ -211,7 +211,7 @@ const HeroSection = () => {
                 <button
                   type="button"
                   onClick={() => setActiveTab("ai")}
-                  className={`flex-1 rounded-md py-1.5 text-center font-mono text-xs font-medium transition-all ${
+                  className={`flex-1 rounded-md py-1.5 px-1 sm:px-2 text-center font-mono text-[11px] sm:text-xs font-medium transition-all ${
                     activeTab === "ai"
                       ? "bg-dark-card text-editorial-primary shadow-sm"
                       : "text-editorial-muted hover:text-editorial-primary"
@@ -222,7 +222,7 @@ const HeroSection = () => {
                 <button
                   type="button"
                   onClick={() => setActiveTab("metrics")}
-                  className={`flex-1 rounded-md py-1.5 text-center font-mono text-xs font-medium transition-all ${
+                  className={`flex-1 rounded-md py-1.5 px-1 sm:px-2 text-center font-mono text-[11px] sm:text-xs font-medium transition-all ${
                     activeTab === "metrics"
                       ? "bg-dark-card text-editorial-primary shadow-sm"
                       : "text-editorial-muted hover:text-editorial-primary"
@@ -354,7 +354,7 @@ const HeroSection = () => {
               </div>
 
               {/* Bottom Quick Specs Footer */}
-              <div className="mt-4 flex items-center justify-between pt-2 text-[11px] font-mono text-editorial-subtle">
+              <div className="mt-4 flex flex-wrap items-center justify-between gap-1 pt-2 text-[10px] sm:text-[11px] font-mono text-editorial-subtle">
                 <span>Frontend: React 19 + Tailwind</span>
                 <span>Backend: Node + Express + Mongo</span>
               </div>
@@ -363,20 +363,20 @@ const HeroSection = () => {
         </div>
 
         {/* Floating Quick Stat Bar */}
-        <div className="mt-16 grid grid-cols-2 gap-3 sm:grid-cols-4 lg:gap-4">
+        <div className="mt-12 sm:mt-16 grid grid-cols-2 gap-2.5 sm:grid-cols-4 lg:gap-4">
           {profileData.stats.map((stat, idx) => (
             <div
               key={stat.label}
-              className="editorial-card !p-4 flex flex-col justify-between"
+              className="editorial-card !p-3.5 sm:!p-4 flex flex-col justify-between"
             >
-              <span className="font-mono text-xs uppercase tracking-wider text-editorial-subtle">
+              <span className="font-mono text-[10px] sm:text-xs uppercase tracking-wider text-editorial-subtle">
                 0{idx + 1}
               </span>
-              <div className="mt-2">
-                <span className="text-2xl font-black text-editorial-primary tracking-tight">
+              <div className="mt-1.5 sm:mt-2">
+                <span className="text-xl sm:text-2xl font-black text-editorial-primary tracking-tight">
                   {stat.value}
                 </span>
-                <p className="mt-0.5 text-xs text-editorial-muted">{stat.label}</p>
+                <p className="mt-0.5 text-[11px] sm:text-xs text-editorial-muted">{stat.label}</p>
               </div>
             </div>
           ))}

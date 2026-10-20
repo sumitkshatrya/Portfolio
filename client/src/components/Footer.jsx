@@ -91,7 +91,7 @@ const Footer = () => {
             <button
               type="button"
               onClick={scrollToTop}
-              className="icon-button ml-2 border-accent-violet/30 hover:border-accent-violet text-accent-violetLight"
+              className="icon-button ml-0 sm:ml-2 border-accent-violet/30 hover:border-accent-violet text-accent-violetLight"
               aria-label="Scroll back to top"
             >
               <FiArrowUp className="h-4 w-4" />
