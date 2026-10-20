@@ -49,8 +49,7 @@ export class AIService {
   async generateChatResponse(userMessage, conversationHistory = []) {
     const apiKey =
       process.env.GEMINI_API_KEY ||
-      process.env.GOOGLE_API_KEY ||
-      "AIzaSyAkc9ZLPiPVbKmQ8Jf3SK6a6zJS_JvM-8M";
+      process.env.GOOGLE_API_KEY;
 
     if (!apiKey) {
       return {

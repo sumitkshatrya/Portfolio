@@ -17,9 +17,7 @@ const ChatLogSchema = new mongoose.Schema(
 const ChatLog = mongoose.models.ChatLog || mongoose.model("ChatLog", ChatLogSchema);
 
 export async function connectDB() {
-  const uri =
-    process.env.MONGODB_URI ||
-    "mongodb+srv://skumar21082001:skumar121252@adventure.81sqcaq.mongodb.net/";
+  const uri = process.env.MONGODB_URI;
   if (!uri) {
     return;
   }
